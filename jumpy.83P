@@ -1,0 +1,68 @@
+ClrDraw
+Lbl 9
+0→J:0→M:0->T
+5.5->Z:5.5->O
+Pxl-On(53,6)
+Pxl-On(53,5)
+Pxl-On(53,4)
+Menu("LEVELS","1",10,"2",11,"3",12,"4",13,"5",14
+Lbl 10
+RecallPic 1
+Goto 16
+Lbl 11
+Recall Pic 2
+Goto 16
+Lbl 12
+RecallPic 3
+Goto 16
+Lbl 13
+Recall Pic 4
+Goto 16
+Lbl 14
+Recall Pic 5
+Lbl 16
+Lbl 0
+If O≠Z
+Pxl-Off(100fPart(O),int(O)
+If int(Z)=0
+5.5->Z
+If int(Z)=93
+Goto 2
+If 100fPart(Z)=61
+5.5→Z
+Pxl-On(100fPart(Z),int(Z))
+Z→O
+getKey→K
+If K=24 and Pxl-Test(100fPart(Z),int(Z-1))=0
+Z-1→Z
+If K=26 and Pxl-Test(100fPart(Z),int(Z+1))=0
+Z+1→Z
+If Pxl-Test(100fPart(Z+0.01),int(Z))=0 and M=0
+Z+0.01→Z
+If K=25 and Pxl-Test(100fPart(Z+0.01),int(Z))=1
+Then
+0→K
+5→M
+End
+If K=25 and J=1 and Pxl-Test(100fpart(Z+0.01),int(Z))=0
+Then
+5→M
+0→J
+End
+If M>0
+Then
+If Pxl-Test(100fPart(Z-0.01),int(Z))=1
+Then 0→M
+Else
+M-1→M
+Z-0.01→Z
+End
+End
+If K=105
+Goto 2
+Goto 0
+Lbl 1
+Pxl-Off(100fPart(Z),int(Z)
+Goto 9
+Pxl-Off(100fPart(O),int(O))
+ClrHome
